@@ -19,6 +19,7 @@ FetchContent_MakeAvailable(raylib)
 add_executable(${PROJECT_NAME} src/main.cpp
     src/ball.cpp
     src/common.cpp
+    src/engine.cpp
     src/peg.cpp)
 
 set_target_properties(${PROJECT_NAME} PROPERTIES

@@ -1,14 +1,15 @@
 #pragma once
 
 #include <raylib.h>
+#include "engine.h"
 
 class Peg {
 public:
     Peg() = default;
     Peg(Vector2 position);
-    void update();
-    void draw() const;
-    void hit();
+    void update(Engine& e);
+    void draw(Engine& e) const;
+    void hit(Engine& e);
     Vector2 position() const;
 private:
     Vector2 m_position{};
