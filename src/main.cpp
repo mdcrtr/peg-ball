@@ -27,4 +27,6 @@ int main() {
     while (app.engine.is_running()) {
         iterate(&app);
     }
+
+    return 0;
 }
