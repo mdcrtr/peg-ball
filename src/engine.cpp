@@ -5,6 +5,7 @@ constexpr Rectangle atlas[]{
     {0, 0, 32, 32},
     {32, 0, 32, 32},
     {64, 0, 32, 32},
+    {96, 0, 32, 32},
 };
 
 Engine::Engine() : m_inited{ true } {
@@ -47,6 +48,11 @@ double Engine::time() const
     return GetTime();
 }
 
+void Engine::draw_circle(Vector2 point, float radius, Color color) const
+{
+    DrawCircleSector(point, radius, 0.0f, 360.0f, 16, color);
+}
+
 void Engine::draw_line(Vector2 point1, Vector2 point2, Color color) const
 {
     DrawLineV(point1, point2, color);
@@ -81,5 +87,5 @@ bool Engine::is_running() const {
 
 bool Engine::is_action_pressed() const
 {
-    return IsKeyPressed(KEY_SPACE);
+    return IsKeyPressed(KEY_SPACE) || IsMouseButtonPressed(MOUSE_BUTTON_LEFT);
 }

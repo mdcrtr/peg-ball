@@ -15,6 +15,7 @@ public:
 
     float dt() const;
     double time() const;
+    void draw_circle(Vector2 point, float radius, Color color = WHITE) const;
     void draw_line(Vector2 point1, Vector2 point2, Color color = WHITE) const;
     void draw_sprite(int id, Vector2 dst, Color color = WHITE) const;
     void draw_text(std::string text, Vector2 point, Color color = WHITE) const;

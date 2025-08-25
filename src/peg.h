@@ -11,8 +11,10 @@ public:
     void draw(Engine& e) const;
     void hit(Engine& e);
     Vector2 position() const;
+    bool was_hit() const;
 private:
     Vector2 m_position{};
     Color m_color{ WHITE };
     float m_hit_cooldown{};
+    bool m_was_hit{};
 };
