@@ -1,11 +1,12 @@
 #include <raylib.h>
+#include <format>
+#include <string>
 #include <vector>
 #include "ball.h"
 #include "common.h"
 #include "engine.h"
 #include "peg.h"
 
-using std::vector;
 
 float rand_float(int min, int max) {
     return static_cast<float>(GetRandomValue(min, max));
@@ -21,8 +22,8 @@ int main() {
     Engine engine;
     Average av;
 
-    vector<Ball> balls{ Vector2{WIDTH / 2, 0}, Vector2{WIDTH / 2 - 100, 0}, Vector2{WIDTH / 2 + 100, 0} };
-    vector<Peg> pegs;
+    std::vector<Ball> balls{ Vector2{WIDTH / 2, 0}, Vector2{WIDTH / 2 - 100, 0}, Vector2{WIDTH / 2 + 100, 0} };
+    std::vector<Peg> pegs;
 
     for (int y = 220; y < HEIGHT - 40; y += 100) {
         for (int x = LEFT_WALL_X; x < RIGHT_WALL_X; x += 100) {
@@ -33,8 +34,8 @@ int main() {
     }
 
     while (engine.is_running()) {
-        double t1 = GetTime();
-        if (IsKeyPressed(KEY_SPACE)) {
+        double t1 = engine.time();
+        if (engine.is_action_pressed()) {
             for (Ball& ball : balls) {
                 float bx = WIDTH / 2.0f + rand_float(-100, 100);
                 ball = Ball{ {bx, 0} };
@@ -55,13 +56,13 @@ int main() {
         for (Ball& ball : balls)
             ball.draw(engine);
 
-        DrawLineV({ LEFT_WALL_X, 0 }, { LEFT_WALL_X, HEIGHT }, WHITE);
-        DrawLineV({ RIGHT_WALL_X, 0 }, { RIGHT_WALL_X, HEIGHT }, WHITE);
+        engine.draw_line({ LEFT_WALL_X, 0 }, { LEFT_WALL_X, HEIGHT });
+        engine.draw_line({ RIGHT_WALL_X, 0 }, { RIGHT_WALL_X, HEIGHT });
 
-        double t2 = GetTime();
+        double t2 = engine.time();
         av.update(t2 - t1);
-        const char* txt = TextFormat("%.6f", av.average());
-        DrawText(txt, 0, 0, 32, GREEN);
+        std::string text = std::format("{:.6f}", av.average());
+        engine.draw_text(text, { 10, 10 }, GREEN);
         engine.end_drawing();
     }
 }

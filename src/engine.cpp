@@ -42,9 +42,24 @@ float Engine::dt() const {
     return GetFrameTime();
 }
 
-void Engine::draw_sprite(int id, Vector2 dst) const {
+double Engine::time() const
+{
+    return GetTime();
+}
+
+void Engine::draw_line(Vector2 point1, Vector2 point2, Color color) const
+{
+    DrawLineV(point1, point2, color);
+}
+
+void Engine::draw_sprite(int id, Vector2 dst, Color color) const {
     Rectangle src = atlas[id];
-    DrawTextureRec(m_texture, src, dst, WHITE);
+    DrawTextureRec(m_texture, src, dst, color);
+}
+
+void Engine::draw_text(std::string text, Vector2 point, Color color) const
+{
+    DrawText(text.c_str(), static_cast<int>(point.x), static_cast<int>(point.y), 32, color);
 }
 
 void Engine::play_sound() const {
@@ -62,4 +77,9 @@ void Engine::end_drawing() const {
 
 bool Engine::is_running() const {
     return !WindowShouldClose();
+}
+
+bool Engine::is_action_pressed() const
+{
+    return IsKeyPressed(KEY_SPACE);
 }
