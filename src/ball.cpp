@@ -27,7 +27,7 @@ void Ball::update(Engine& e, vector<Peg>& pegs) {
     if (m_position.y > HEIGHT)
         m_position.y = 0;
 
-    if (m_position.x < 0 || m_position.x > WIDTH)
+    if (m_position.x < LEFT_WALL_X + 16.0f || m_position.x > RIGHT_WALL_X - 16.0f)
         m_velocity.x *= -1.0f;
 }
 
