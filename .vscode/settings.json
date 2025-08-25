@@ -2,6 +2,24 @@
   "sarif-viewer.connectToGithubCodeScanning": "off",
   "files.associations": {
     ".als.json": "jsonc",
-    "cmath": "cpp"
+    "cmath": "cpp",
+    "atomic": "cpp",
+    "deque": "cpp",
+    "string": "cpp",
+    "unordered_map": "cpp",
+    "vector": "cpp",
+    "iterator": "cpp",
+    "memory_resource": "cpp",
+    "optional": "cpp",
+    "string_view": "cpp",
+    "new": "cpp",
+    "ranges": "cpp",
+    "span": "cpp",
+    "stdexcept": "cpp",
+    "streambuf": "cpp",
+    "system_error": "cpp",
+    "functional": "cpp",
+    "tuple": "cpp",
+    "variant": "cpp"
   }
 }

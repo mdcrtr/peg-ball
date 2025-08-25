@@ -7,7 +7,7 @@ constexpr Rectangle atlas[]{
     {64, 0, 32, 32},
 };
 
-Engine::Engine() {
+Engine::Engine() : m_inited{ true } {
     InitWindow(WIDTH, HEIGHT, "Peg Ball");
     SetTargetFPS(60);
     InitAudioDevice();
@@ -15,7 +15,23 @@ Engine::Engine() {
     m_sound = LoadSound("assets/peg.wav");
 }
 
+Engine::Engine(Engine&& o) : m_texture{ o.m_texture }, m_sound{ o.m_sound }, m_inited{ true }
+{
+    o.m_inited = false;
+}
+
+Engine& Engine::operator=(Engine&& o)
+{
+    m_texture = o.m_texture;
+    m_sound = o.m_sound;
+    m_inited = true;
+    o.m_inited = false;
+    return *this;
+}
+
 Engine::~Engine() {
+    if (!m_inited) return;
+
     UnloadSound(m_sound);
     UnloadTexture(m_texture);
     CloseAudioDevice();
