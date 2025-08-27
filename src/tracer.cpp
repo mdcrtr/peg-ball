@@ -17,6 +17,7 @@ void Tracer::trace(Vector2 position, Vector2 velocity) {
 
 void Tracer::draw(Engine& e) const {
     for (Vector2 pos : m_path) {
-        e.draw_circle(pos, 2.0f, GRAY);
+        Vector2 dst{ pos.x - 2, pos.y - 2 };
+        e.draw_sprite(4, dst);
     }
 }

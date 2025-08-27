@@ -6,6 +6,7 @@ constexpr Rectangle atlas[]{
     {32, 0, 32, 32},
     {64, 0, 32, 32},
     {96, 0, 32, 32},
+    {0, 32, 4, 4},
 };
 
 Engine::Engine() : m_inited{ true } {
